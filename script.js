@@ -3,13 +3,13 @@
 // Give the object one property called complain. complain's value should
 // be a method (a function) which logs the string "Meow!".
 
-function catMeow() {
-  const cat = {
-    complain: console.log("Meow!"),
-  };
-}
+const cat = {
+  complain: function () {
+    console.log("Meow!");
+  },
+};
 
-catMeow();
+cat.complain();
 
 // Question 2
 // Select the h3 from the HTML using the querySelector method and assign it to a variable called heading.
@@ -36,7 +36,7 @@ heading.classList.add("subheading");
 
 const paragraphs = document.querySelectorAll("p");
 
-function changeColor(allParagraphs) {
+function changeColor() {
   for (let i = 0; i < paragraphs.length; i++) {
     paragraphs[i].style.color = "red";
   }
@@ -88,7 +88,7 @@ namesOfCats(cats);
 // Return the HTML from the function.
 // Call the function and pass in the cats array as the argument.
 // Assign the return value of the function to the innerHTML property of the element on the HTML page with a
-//class of cat-container.
+// class of cat-container.
 
 catsContainer = document.querySelector(".cat-container");
 
@@ -96,16 +96,17 @@ function createCats(cats) {
   let html = "";
 
   for (let i = 0; i < cats.length; i++) {
-    let catsAge = "Age unknown";
+    let catsAge = cats[i].age;
 
-    if (cats[i].age) {
-      catsAge = cats[i].age;
+    if (!cats[i].age) {
+      catsAge = "Age unknown";
     }
 
-    html += `<div>
-                <h5> ${cats[i].name} </h5>
-                <p>Age: ${catsAge}</p>
-             </div>`;
+    html += `
+    <div>
+        <h5>Name: ${cats[i].name} </h5>
+        <p>Age: ${catsAge}</p>
+    </div>`;
   }
 
   return html;
